@@ -1,6 +1,11 @@
 from fastapi import APIRouter
-router = APIRouter(prefix="/ingest", tags=["ingest"])
 
-@router.get("/")
-async def injest_placeholder():
-    return {"ingest route placeholder"}
+router = APIRouter(prefix="/api/ingest", tags=["Ingestion"])
+
+
+@router.post("/placeholder")
+async def ingest_placeholder() -> dict[str, str]:
+    return {
+        "status": "not_implemented",
+        "message": "Ingestion endpoint placeholder",
+    }

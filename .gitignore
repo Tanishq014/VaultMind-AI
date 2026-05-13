@@ -1,15 +1,15 @@
-# Environments
 venv/
 env/
 
-# Python Cache
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# Environment Variables (NEVER COMMIT SECRETS)
 .env
 
-# OS Files
 .DS_Store
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/

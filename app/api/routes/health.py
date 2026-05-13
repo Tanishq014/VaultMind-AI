@@ -1,11 +1,11 @@
 from fastapi import APIRouter
 
-router = APIRouter()
+router = APIRouter(tags=["Health"])
+
 
 @router.get("/health")
-async def health():
+async def health_check() -> dict[str, str]:
     return {
         "status": "ok",
-        "Service": "Vault Mind AI"
+        "service": "vaultmind-ai",
     }
-

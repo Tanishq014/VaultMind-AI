@@ -1,10 +1,11 @@
 from fastapi import APIRouter
 
-router = APIRouter(prefix="/query", tags=["query"])
+router = APIRouter(prefix="/api/query", tags=["Query"])
 
 
-@router.get("/")
-async def query_placeholder():
+@router.post("/placeholder")
+async def query_placeholder() -> dict[str, str]:
     return {
-        "message": "Query route placeholder"
+        "status": "not_implemented",
+        "message": "Query endpoint placeholder",
     }
