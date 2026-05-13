@@ -1,18 +1,22 @@
-from pydantic import BaseSettings, SettingsConfigDict
+from functools import lru_cache
+
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "Vault Mind AI Engine"
-    Version: str = "1.0.0"
-    R2_ACCESS_KEY_ID: str
-    R2_SECRET_ACCESS_KEY: str
-    R2_ENDPOINT_URL: str
-    R2_BUCKET_NAME: str
+    app_name: str = "VaultMind AI Engine"
+    app_version: str = "0.1.0"
+    environment: str = "local"
+    log_level: str = "INFO"
+    api_prefix: str = "/api"
 
-    GEMINI_API_KEY: str
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
 
-    DATABASE_URL: str
-
-    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
-
-settings = Settings()
+#object is once created and reused
+@lru_cache
+def get_settings() -> Settings:
+    return Settings()

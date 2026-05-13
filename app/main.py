@@ -3,12 +3,15 @@ from fastapi import FastAPI
 from app.api.routes.health import router as health_router
 from app.api.routes.ingest import router as ingest_router
 from app.api.routes.query import router as query_router
+from app.core.config import get_settings
 
 
 def create_app() -> FastAPI:
+    settings = get_settings()
+
     app = FastAPI(
-        title="VaultMind AI Engine",
-        version="0.1.0",
+        title=settings.app_name,
+        version=settings.app_version,
         description="AI microservice powering VaultMind RAG workflows",
     )
 
